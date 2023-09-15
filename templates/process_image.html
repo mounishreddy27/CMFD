@@ -1,0 +1,79 @@
+{% extends 'home.html'%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process Image</title>
+    <style>
+        #image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #image-container img {
+            margin-bottom: 20px;
+        }
+
+        #download-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="image-container">
+        {% block input %}
+        <img src="{{ original_image_url }}" alt="Original Image">
+        {% endblock %}
+        <div id="download-container">
+            {% block download %}
+            <button class="download" id="download-btn" disabled><a href="{% url 'download-image' %}" download>Download processed image</a></button>
+            {% endblock %}
+        </div>
+    </div>
+
+    <div id="processed-image-container">
+        {% block output %}
+        {% if processed_image_url %}
+          <img id="processed-image" src="{{ processed_image_url }}" alt="Processed Image">
+        {% else %}
+          <p id="processing-message">{{message}}</p>
+        {% endif %}
+        {% endblock %}
+    </div>
+    <p>{{ message }}</p>
+
+
+    <script>
+        function updateProcessedImage(url) {
+            var img = document.getElementById('processed-image');
+            img.src = url;
+        
+            // Enable download button
+            var downloadBtn = document.getElementById('download-btn');
+            downloadBtn.disabled = false;
+        }
+        
+        function pollProcessedImage() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    if (data.processed_image_url) {
+                        updateProcessedImage(data.processed_image_url);
+                    } else {
+                        setTimeout(pollProcessedImage, 1000);
+                    }
+                }
+            };
+            xhr.open("GET", "/check_processed_image/", true);
+            xhr.send();
+        }
+        
+        pollProcessedImage();
+    </script>
+</body>
+</html>

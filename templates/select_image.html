@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Image</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+   
+    <header>
+        <h1>Select Image</h1>
+        {% block form %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*" style="display: none;" id="image-input" onchange="document.getElementById('submit-btn').click(); document.getElementById('process-btn').style.display='inline-block';" />
+            <button type="button" class="select-btn" onclick="document.getElementById('image-input').click();">Select Image</button>
+            <input type="submit" value="Submit" id="submit-btn" style="display: none;" />
+        </form>
+        {% endblock %}
+    </header>
+
+      {% if request.session.image_url %}
+      {% block input %}
+        <img src="{{ request.session.image_url }}" alt="Selected Image" />
+        {% endblock %}
+        <br />
+        {% block process %}  
+        <button class="process-btn" id="process-btn"><a href="{% url 'process_image' %}">Process Image</a></button>
+        {% endblock %}
+      {% endif %}
+       
+      {% block output%}
+      <p id="mid"></p>  
+        {% endblock %}
+      
+
+      <script>
+        var processBtn = document.getElementById('process-btn');
+        var imgInput = document.getElementById('image-input');
+        imgInput.onchange = function() {
+            processBtn.style.display = 'inline-block';
+        }
+      </script>
+
+</body>
+</html>

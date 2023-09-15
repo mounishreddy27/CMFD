@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    background-image: url('https://www.example.com/background.jpg');
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container {
+    width: 50%;
+    height: 500px;
+    padding: 20px;
+    margin: 0 10px;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container img {
+    max-width: 100%;
+    max-height: calc(100% - 40px); /* subtract padding */
+}
+
+.input-container {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    margin: 10px;
+    order: 1;
+}
+
+.output-container {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    margin: 10px;
+    order: 2;
+}
+
+.upload-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    bottom: 50px;
+}
+
+.upload-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.select-btn{
+  position: absolute;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  bottom: 50px;
+  left: 200px;
+}
+
+.process-btn{
+  position: absolute;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  bottom: 50px;
+  left: 700px;
+}
+
+.process-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.download {
+  position: absolute;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  bottom: 50px;
+  left: 1100px;
+}
+
+.download a {
+  color: white;
+  text-decoration: none;
+}
+
+.logout-btn {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.logout-btn a {
+    color: white;
+    text-decoration: none;
+}

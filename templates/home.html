@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>CMF Detection</h1>
+        <a href="{% url 'home'%}">Home</a>
+        <button class="logout-btn"><a href="{% url 'logout' %}">Logout</a></button>
+    </div>
+
+    <div class="container-wrapper">
+        <div class="container input-container">
+          <h2>Input Image</h2>
+          <div class="input-img-container">
+            {% block input%}
+            
+            {% endblock %}
+          </div>
+        </div>
+        <div class="container output-container">
+          <h2>Output Image</h2>
+          <div class="output-img-container">
+            {% block output%}
+            
+            {% endblock %}
+          </div>
+        </div>
+    </div>
+    
+      <button class="upload-btn"><a href="{% url 'select_image' %}">Upload Image</a></button> 
+      {% block form %}{% endblock %}
+      {% block process %} {% endblock %}
+      {% block download %} {% endblock %}
+      <script>
+        var processBtn = document.getElementById('process-btn');
+        var message = document.getElementById('mid')
+        processBtn.onclick = function() {
+            message.textContent='Image is being processed...';
+        }
+      </script>
+
+</body>
+</html>
